@@ -4,8 +4,8 @@ import time
 import cv2  # OpenCV    # pip install opencv-python
 from PIL import ImageGrab
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT)
 
 pwm = GPIO.PWM(17, 50)  # PWM frequency = 50 Hz
 pwm.start(7.5)  # Start with 105 degree position (7.5% duty cycle)
