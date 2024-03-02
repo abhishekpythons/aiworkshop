@@ -23,20 +23,7 @@ def screen_record():
 
     while True:
         img = ImageGrab.grab(bbox=(box['left'], box['top'], box['left']+box['width'], box['top']+box['height']))
-        print('loop processed for {} seconds'.format(time.time() - last_time))
-        last_time = time.time()
-        img = np.array(img)
-
-        processed_image = image_processing(img)
-        mean = np.mean(processed_image)
-        print('mean = ', mean)
-
-        if not mean == float(0):
-            pwm.ChangeDutyCycle(5)  # Set duty cycle to 70% (70 degree position)
-            time.sleep(0.09)
-            pwm.ChangeDutyCycle(7.5)  # Set duty cycle back to 105% (105 degree position)
-            time.sleep(0.09)
-
+        cv2.imshow('window', cv2.cvtColor(np.array(img), cv2.COLOR_BGR2RGB))
         if cv2.waitKey(25) & 0xFF == ord('q'):
             cv2.destroyAllWindows()
             break
